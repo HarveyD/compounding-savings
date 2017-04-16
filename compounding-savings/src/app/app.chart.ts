@@ -14,6 +14,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
       </div>
       <infobox></infobox>
       <infobox></infobox>
+      <infobox></infobox>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-block btn-primary btn-add" (click)="onClick()"> Add </button>
@@ -44,11 +45,11 @@ export class ChartComponent {
 
   // lineChart
   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    {data: [65, 59, 80, 81, 56, 55], label: 'Savings 1'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Savings 2'},
+    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Savings 3'}
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   public lineChartOptions:any = {
     responsive: true
   };
@@ -85,18 +86,19 @@ export class ChartComponent {
     this.modal.alert()
         .size('lg')
         .showClose(true)
-        .title('Add Options')
+        .title('Add Savings')
         .body(`
-            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>`)
+            <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Example label</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Another label</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+              </div>
+            </form>
+            `)
         .okBtnClass('btn-block btn-success')
         .okBtn('Submit')
         .open();
