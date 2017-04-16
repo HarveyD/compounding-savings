@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./style/app.component.css']
 })
 export class HeadingComponent {
   title = 'Savings Motivator';

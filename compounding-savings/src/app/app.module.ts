@@ -5,24 +5,32 @@ import { HttpModule } from '@angular/http';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
 import { HeadingComponent } from './app.heading';
 import { ChartComponent } from './app.chart';
+import { InfoBoxComponent } from './app.infobox';
 
 @NgModule({
   declarations: [
     HeadingComponent,
-    ChartComponent
+    ChartComponent,
+    InfoBoxComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ChartsModule
+    ChartsModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [],
   bootstrap: [
     HeadingComponent,
-    ChartComponent
+    ChartComponent,
+    InfoBoxComponent
     ]
 })
 export class AppModule { }

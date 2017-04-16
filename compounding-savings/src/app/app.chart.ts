@@ -1,13 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   selector: 'chart',
   template:`
    <div class="row">
-    <div class="col-md-3">
-      <h1> hello test </h1>
+    <div class="col-xs-3 side-menu">
+      <div class = "row">
+        <div class="col-xs-12">
+          <h1> Input </h1>
+        </div>
+      </div>
+      <infobox></infobox>
+      <infobox></infobox>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-block btn-primary btn-add" (click)="onClick()"> Add </button>
+        </div>
+      </div>
     </div>
-    <div class="col-md-9">
+
+    <div class="col-xs-9">
       <canvas baseChart
         [datasets]="lineChartData"
         [labels]="lineChartLabels"
@@ -21,9 +35,13 @@ import { Component } from '@angular/core';
     </div>
   </div>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./style/app.component.css']
 })
 export class ChartComponent {
+   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal) {
+    overlay.defaultViewContainer = vcRef;
+   }
+
   // lineChart
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
@@ -63,15 +81,25 @@ export class ChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
  
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
+  public onClick(){
+    this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Add Options')
+        .body(`
+            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
+            does not block.</h4>
+            <b>Configuration:</b>
+            <ul>
+                <li>Non blocking (click anywhere outside to dismiss)</li>
+                <li>Size large</li>
+                <li>Dismissed with default keyboard key (ESC)</li>
+                <li>Close wth button click</li>
+                <li>HTML content</li>
+            </ul>`)
+        .okBtnClass('btn-block btn-success')
+        .okBtn('Submit')
+        .open();
   }
  
   // events
