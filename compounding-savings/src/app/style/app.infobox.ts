@@ -14,9 +14,8 @@ import { Component } from '@angular/core';
         VAS
     </div>
   </div>  
-
   `,
-  styleUrls: ['./style/app.component.css']
+  styleUrls: ['./style/app.sidemenu.css']
 })
 export class InfoBoxComponent {
 }

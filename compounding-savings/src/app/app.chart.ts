@@ -6,23 +6,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
   selector: 'chart',
   template:`
    <div class="row">
-    <div class="col-xs-3 side-menu">
-      <div class = "row">
-        <div class="col-xs-12">
-          <h1> Input </h1>
-        </div>
-      </div>
-      <infobox></infobox>
-      <infobox></infobox>
-      <infobox></infobox>
-      <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-block btn-primary btn-add" (click)="onClick()"> Add </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-9">
+    <div class="col-xs-12">
       <canvas baseChart
         [datasets]="lineChartData"
         [labels]="lineChartLabels"

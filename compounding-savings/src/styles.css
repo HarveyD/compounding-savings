@@ -1,13 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
-.background {
+/*html { 
+  height:100%; 
+  }
+
+body { 
+  position:relative; 
+  top:0; 
+  bottom:0; 
+  right:0; 
+  left:0; 
+
+  }*/
+
+html {
+  height: 100%;
+  box-sizing: border-box; /* https://css-tricks.com/box-sizing/ */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; /* https://css-tricks.com/box-sizing/ */
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    display: flex; /* body is the outer flex container */
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+#inner-flex-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 300px);
+}
+
+header  { flex: 1; background: tomato; }
+aside   { flex: 1 300px; background: hotpink; }
+section { flex: 4; background: deepskyblue; }
+
+body{
   background: #2193b0; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left, #6dd5ed , #2193b0); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(right,  #6dd5ed, #2193b0); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(right,  #6dd5ed, #2193b0); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right,  #6dd5ed , #2193b0); /* Standard syntax */
-  padding:30px;
 }
+
+.menu { 
+  list-style: none; 
+  padding-left: 0px;
+  }
+.menu li {
+  padding: 16px 32px;
+  border-top: 1px solid #2b2b2b;
+}
+
 
 .modal-dialog {
   width: 25vw;
+}
+
+.full-height{
+  height: 100vh;
 }

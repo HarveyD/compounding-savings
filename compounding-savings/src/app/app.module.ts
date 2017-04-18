@@ -10,13 +10,15 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 import { HeadingComponent } from './app.heading';
 import { ChartComponent } from './app.chart';
-import { InfoBoxComponent } from './app.infobox';
+//import { InfoBoxComponent } from './app.infobox';
+import { SidemenuComponent } from './app.sidemenu';
 
 @NgModule({
   declarations: [
     HeadingComponent,
     ChartComponent,
-    InfoBoxComponent
+    //InfoBoxComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { InfoBoxComponent } from './app.infobox';
   bootstrap: [
     HeadingComponent,
     ChartComponent,
-    InfoBoxComponent
+    //InfoBoxComponent,
+    SidemenuComponent
     ]
 })
 export class AppModule { }
