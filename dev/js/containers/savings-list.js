@@ -14,9 +14,18 @@ class SavingsList extends Component {
                         {saving.savingType} | {saving.investment} | {saving.amount}
                     </li>
                     <div className = {this.props.activeSaving != null && this.props.activeSaving.id == saving.id ? 'active': 'inactive'}>
-                        <p> Hello </p>
-                        <p> Forms will go here. </p>
-                        <button> Save </button>
+                        BABABABBBANAS
+                        <div className="pure-g">
+
+                        </div>                        
+                        <div className="pure-g">
+                            <div className="pure-u-1-2">
+                                <button className="pure-button"> Save </button>
+                            </div>
+                            <div className="pure-u-1-2"> 
+                                <button className="pure-button"> Save </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -26,7 +35,11 @@ class SavingsList extends Component {
     render() {
         return (
             <ul className="navList">
+                <li> Your Savings <i className="fa fa-money"></i> </li>
+                <br/>
                 {this.renderList()}
+                <br/>
+                <li> Add Saving <i className="fa fa-plus"></i></li>
             </ul>
         );
     }
