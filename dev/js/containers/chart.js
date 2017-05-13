@@ -6,7 +6,7 @@ const options = {
     responsive:true,
     maintainAspectRatio: false,
     scaleShowGridLines: true,
-    scaleGridLineColor: 'rgba(0,0,0,.05)',
+    scaleGridLineColor: 'rgba(255,255,255,.05)',
     scaleGridLineWidth: 1,
     scaleShowHorizontalLines: true,
     scaleShowVerticalLines: true,
@@ -19,6 +19,8 @@ const options = {
     datasetStroke: true,
     datasetStrokeWidth: 2,
     datasetFill: true,
+    scaleLineColor: "white",
+    scaleFontColor: "white",
     legendTemplate: '<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
 }
 

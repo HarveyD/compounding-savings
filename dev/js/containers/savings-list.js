@@ -14,16 +14,21 @@ class SavingsList extends Component {
                         {saving.savingType} | {saving.investment} | {saving.amount}
                     </li>
                     <div className = {this.props.activeSaving != null && this.props.activeSaving.id == saving.id ? 'active': 'inactive'}>
-                        BABABABBBANAS
-                        <div className="pure-g">
+                        <div className="pure-g pure-u-1">
+                            <form className="pure-form pure-form-stacked">
+                                <fieldset>
+                                    <label>Email</label>
+                                    <input id="email" type="email" placeholder="Email"/>
+                                </fieldset>
+                            </form>
+                        </div>
 
-                        </div>                        
                         <div className="pure-g">
                             <div className="pure-u-1-2">
-                                <button className="pure-button"> Save </button>
+                                <button className="pure-button"> Update <i className="fa fa-pencil"/> </button>
                             </div>
                             <div className="pure-u-1-2"> 
-                                <button className="pure-button"> Save </button>
+                                <button className="pure-button"> Delete <i className="fa fa-times"/></button>
                             </div>
                         </div>
                     </div>
