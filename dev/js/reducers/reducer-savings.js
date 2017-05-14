@@ -1,25 +1,6 @@
-/*
- * The users reducer will always return an array of users no matter what
- * You need to return something, so if there are no users then just return an empty array
- * */
-
 const initialElements = [
         {
             id: 1,
-            type: "Coffee",
-            amount: 30,
-            investment: "Shares",
-            frequency: "Monthly"
-        },
-        {
-            id: 2,
-            type: "DVD's",
-            amount: 10,
-            investment: "Shares",
-            frequency: "Weekly"
-        },
-        {
-            id: 3,
             type: "Coffee",
             amount: 3,
             investment: "Shares",
@@ -38,7 +19,13 @@ export default function (state = initialElements, action) {
                 amount: 0}];
             break;
         case "UPDATE_SAVING":
+             return state.map((item, index) => {
+                if(item.id !== action.payload.id) {
+                    return item;
+                }
 
+                return action.payload;    
+            });
             break;
         case "DELETE_SAVING":
             return state.filter(x => x !== action.payload);

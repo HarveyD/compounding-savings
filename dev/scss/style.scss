@@ -42,7 +42,7 @@ body, #root {
    order: 1;
 }
 
-.nav   { flex: 1 275px; order: 0; overflow: auto; height:100vh;} // this is making it not mobile responsive
+.nav   { flex: 1 275px; order: 0; }//overflow: auto; height:100vh;} // this is making it not mobile responsive
 header  { flex: 1; order: 0; margin: 8px;}
 section { flex: 4; order: 1; padding: 10px; }
 
@@ -78,10 +78,12 @@ form{
 	button{
 		padding: 1em;
 		margin-top: 12px;
+		margin-left: 6px;
+		margin-right: 6px;
 		border: 1px solid white;
 		border-radius: 3px;
-		display: block;
-		width: 100%;
+		display: inline-block;
+		width: 45%;
 		background-color: #6dd5ed;
 		color: white;
 		transition: all 0.3s ease-in-out;
@@ -129,6 +131,18 @@ form{
 		transition: all 0.3s;
 		font-family: 'Helvetica Neue', sans-serif; 
 		font-weight: bold; 
+
+		position:relative;
+		a {
+			position: absolute;
+			top: 0;
+			right: 4px;
+			font-size: 24px;
+
+			&:hover{
+				color: red;
+			}
+		}
 
 		&:hover{
 			background-color:white;

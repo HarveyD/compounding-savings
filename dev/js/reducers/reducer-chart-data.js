@@ -3,56 +3,81 @@ for(var i=1; i<= 25; i++){
     yearLabels.push('Year '+ i);
 }
 
-const chartData = {
+var skeleton = {
+    fillColor: 'rgba(220,220,220,0.2)',
+    strokeColor: 'rgba(220,220,220,1)',
+    pointColor: 'rgba(220,220,220,1)',
+    pointStrokeColor: '#fff',
+    pointHighlightFill: '#fff',
+    pointHighlightStroke: 'rgba(220,220,220,1)'
+}
+
+var chartData = {
     labels: yearLabels,
     datasets: [
         {
-            label: 'My First dataset',
+            id: 1,
+            label: 'New Saving',
             fillColor: 'rgba(220,220,220,0.2)',
             strokeColor: 'rgba(220,220,220,1)',
             pointColor: 'rgba(220,220,220,1)',
             pointStrokeColor: '#fff',
             pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)'
-        },
-        {
-            label: 'My Second dataset',
-            fillColor: 'rgba(151,187,205,0.2)',
-            strokeColor: 'rgba(151,187,205,1)',
-            pointColor: 'rgba(151,187,205,1)',
-            pointStrokeColor: '#fff',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(151,187,205,1)',
-            data: [28, 48, 40, 19, 86, 27, 90],
-        },
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: [0],
+        }
         ]
 };
 
 export default function (state = chartData, action) {
-    // if(action.type != "SAVINGS_ADD"){
-    //     return;
-    // }
-    if(action != null){
+    switch(action.type){
+        case "CREATE_SAVING":
+            var newData = Object.assign({}, skeleton);
+            newData.id = state.datasets.length+1;
+            newData.data = [0];
+            newData.label = "";
+            
+            return Object.assign({}, state, {
+                datasets: state.datasets.concat(newData)
+            });
+            break;
+        case "UPDATE_SAVING":
+            //Look for the dataset being updated, update compounded info and return. Constructs a new dataset
+            const newData = state.datasets.map((dataset, index) => {
+                if(dataset.id !== action.payload.id) {
+                    return dataset;
+                }
+
+                dataset.label = action.payload.type;
+                dataset.data = calculateCompound(action.payload); 
+                return dataset;
+            });
+
+            return Object.assign({}, state, {
+                datasets: newData
+            });
+            break;
+        case "DELETE_SAVING":
+            break
+        default:
+            return state;
     }
-
-    var stub = {
-        amount: 3,
-        frequency: 52, //times per year
-        compounded: 12, //times per year
-        interestRate: 1.09
-    };
-
-    var savings = [];
-    savings[0]=0;
-    for(var i=1; i<=25; i++){
-        var p = savings[i-1] + (stub.amount * stub.frequency);
-        savings.push(
-            p * (1+ stub.interestRate/stub.compounded)
-        );
-    }
-    savings.shift();
-
-    chartData.datasets[0].data = savings;
 
     return state;
+}
+
+var calculateCompound = function(saving){
+    saving.interestRate = 1.08;
+    saving.compounded = 12;
+
+    var compounding = [];
+    compounding[0]=0;
+    for(var i=1; i<=25; i++){
+        var p = compounding[i-1] + (saving.amount * saving.frequency);
+        compounding.push(
+            p * (1+ saving.interestRate/saving.compounded)
+        );
+    }
+    compounding.shift();
+    return compounding; 
 }

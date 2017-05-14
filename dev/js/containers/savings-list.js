@@ -1,27 +1,34 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {selectSaving} from '../actions/index';
-import {createSaving} from '../actions/index';
-import {deleteSaving} from '../actions/index';
+
+import {bindActionCreators} from 'redux';
+import { selectSaving } from '../actions/index';
+import { createSaving } from '../actions/index';
+import { updateSaving } from '../actions/index';
+import { deleteSaving } from '../actions/index';
+
 import {Field, reduxForm} from 'redux-form';
 import SavingForm from './savings-form';
 
 class SavingsList extends Component {
-
     submit(values){
-        console.log(values);
+        this.props.updateSaving(values);
     }
 
     renderList() {
         return this.props.savings.map((saving) => {
             return (
                 <div key={saving.id}>
-                    <li onClick={() => this.props.selectSaving(saving)} >
-                        {saving.type} @ ${saving.amount} / {saving.frequency}
+                    <li onClick={() => this.props.selectSaving(saving)}>
+                        {saving.type ? (
+                            `${saving.type} @ \$${saving.amount} / ${saving.frequency}`
+                        ): (
+                            'Empty Saving'
+                        )}
+                        <a onClick={() => this.props.deleteSaving(saving)} className="delete"> <i className="fa fa-times"/> </a>
                     </li>
                     <div className = {this.props.activeSaving != null && this.props.activeSaving.id == saving.id ? 'active': 'inactive'}>
-                        <SavingForm form={saving.id} savingData={saving} onSubmit={this.submit}></SavingForm>
+                        <SavingForm form={''+saving.id} savingData={saving} onSubmit={(values) => this.props.updateSaving(values)}></SavingForm>
                     </div>
                 </div>
             );
@@ -57,6 +64,7 @@ function matchDispatchToProps(dispatch){
     return bindActionCreators({
         selectSaving: selectSaving, 
         createSaving: createSaving,
+        updateSaving: updateSaving,
         deleteSaving: deleteSaving
     }, dispatch);
 }

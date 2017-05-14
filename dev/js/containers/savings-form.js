@@ -19,7 +19,7 @@ class SavingForm extends Component {
           <label htmlFor="frequency">Saving Frequency</label>
           <Field name="frequency" component="input" type="text"/>
         </div>
-        <button type="submit"><i className="fa fa-tick"/>Submit</button>
+        <button type="submit"><i className="fa fa-check"/>Update</button>
       </form>
     );
   }

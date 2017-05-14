@@ -27,7 +27,7 @@ const options = {
 class Chart extends React.Component {
     render() {
         return (
-            <LineChart data={this.props.chartData} options={options}/>
+            <LineChart data={this.props.chartData} redraw options={options}/>
         );
     }
 }
