@@ -43,7 +43,7 @@ export default function (state = chartData, action) {
             break;
         case "UPDATE_SAVING":
             //Look for the dataset being updated, update compounded info and return. Constructs a new dataset
-            const newData = state.datasets.map((dataset, index) => {
+            var newData = state.datasets.map((dataset, index) => {
                 if(dataset.id !== action.payload.id) {
                     return dataset;
                 }
@@ -58,6 +58,10 @@ export default function (state = chartData, action) {
             });
             break;
         case "DELETE_SAVING":
+            var newData = state.datasets.filter(x => x.id !== action.payload.id);
+            return Object.assign({}, state, {
+                datasets: newData
+            });
             break
         default:
             return state;
