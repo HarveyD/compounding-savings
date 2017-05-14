@@ -1,7 +1,6 @@
-export const createSaving = (saving) => {
+export const createSaving = () => {
     return {
-        type: 'CREATE_SAVING',
-        payload: saving
+        type: 'CREATE_SAVING'
     }
 };
 

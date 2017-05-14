@@ -1,36 +1,27 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {selectSaving} from '../actions/index'
-
+import {selectSaving} from '../actions/index';
+import {createSaving} from '../actions/index';
+import {deleteSaving} from '../actions/index';
+import {Field, reduxForm} from 'redux-form';
+import SavingForm from './savings-form';
 
 class SavingsList extends Component {
+
+    submit(values){
+        console.log(values);
+    }
 
     renderList() {
         return this.props.savings.map((saving) => {
             return (
                 <div key={saving.id}>
                     <li onClick={() => this.props.selectSaving(saving)} >
-                        {saving.savingType} | {saving.investment} | {saving.amount}
+                        {saving.type} @ ${saving.amount} / {saving.frequency}
                     </li>
                     <div className = {this.props.activeSaving != null && this.props.activeSaving.id == saving.id ? 'active': 'inactive'}>
-                        <div className="pure-g pure-u-1">
-                            <form className="pure-form pure-form-stacked">
-                                <fieldset>
-                                    <label>Email</label>
-                                    <input id="email" type="email" placeholder="Email"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                        <div className="pure-g">
-                            <div className="pure-u-1-2">
-                                <button className="pure-button"> Update <i className="fa fa-pencil"/> </button>
-                            </div>
-                            <div className="pure-u-1-2"> 
-                                <button className="pure-button"> Delete <i className="fa fa-times"/></button>
-                            </div>
-                        </div>
+                        <SavingForm onSubmit={this.submit}></SavingForm>
                     </div>
                 </div>
             );
@@ -44,7 +35,7 @@ class SavingsList extends Component {
                 <br/>
                 {this.renderList()}
                 <br/>
-                <li> Add Saving <i className="fa fa-plus"></i></li>
+                <li onClick={() => this.props.createSaving()}> Add Saving <i className="fa fa-plus"></i></li>
             </ul>
         );
     }
@@ -63,7 +54,11 @@ function mapStateToProps(state) {
 // Get actions and pass them as props to to UserList
 //      > now UserList has this.props.selectUser
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({selectSaving: selectSaving}, dispatch);
+    return bindActionCreators({
+        selectSaving: selectSaving, 
+        createSaving: createSaving,
+        deleteSaving: deleteSaving
+    }, dispatch);
 }
 
 // We don't want to return the plain UserList (component) anymore, we want to return the smart Container

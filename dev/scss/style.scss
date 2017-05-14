@@ -42,7 +42,7 @@ body, #root {
    order: 1;
 }
 
-.nav   { flex: 1 275px; order: 0; }
+.nav   { flex: 1 275px; order: 0; overflow: auto; height:100vh;} // this is making it not mobile responsive
 header  { flex: 1; order: 0; margin: 8px;}
 section { flex: 4; order: 1; padding: 10px; }
 
@@ -51,6 +51,47 @@ section { flex: 4; order: 1; padding: 10px; }
      .nav { flex: 1; order: 2; }
      section{ flex: 15;}
      #inner-flex-container { width: 100%; flex: 6; }
+}
+
+/* Saving Form */
+form{
+	font-family: 'Helvetica Neue', sans-serif; 
+	
+	label{
+		display: block;
+		font-size: 0.8rem;
+		line-height: 1.4rem;
+		font-weight: 250;
+		float:left;
+	}
+
+	input{
+		border: 1px solid white;
+		font-size: 1rem;
+		padding: 0.5rem;
+		display: block;
+		width: 100%;
+		border-radius: 3px;
+		color: dimgray;
+	}
+
+	button{
+		padding: 1em;
+		margin-top: 12px;
+		border: 1px solid white;
+		border-radius: 3px;
+		display: block;
+		width: 100%;
+		background-color: #6dd5ed;
+		color: white;
+		transition: all 0.3s ease-in-out;
+
+		&:hover{
+			background-color: white;
+			color: #6dd5ed;
+			cursor: pointer;
+		}
+	}
 }
 
 /* Side Menu */
@@ -68,7 +109,7 @@ section { flex: 4; order: 1; padding: 10px; }
 
 		.active{
 			padding: 8px;
-			max-height: 250px;
+			max-height: 400px;
     		opacity: 1;
 			transition: all 0.5s ease-in-out;
 		}
