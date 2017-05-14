@@ -21,7 +21,7 @@ class SavingsList extends Component {
                         {saving.type} @ ${saving.amount} / {saving.frequency}
                     </li>
                     <div className = {this.props.activeSaving != null && this.props.activeSaving.id == saving.id ? 'active': 'inactive'}>
-                        <SavingForm onSubmit={this.submit}></SavingForm>
+                        <SavingForm form={saving.id} savingData={saving} onSubmit={this.submit}></SavingForm>
                     </div>
                 </div>
             );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
 class SavingForm extends Component {
   render() {
@@ -24,9 +25,15 @@ class SavingForm extends Component {
   }
 }
 
+function mapStateToProps(state, ownProps) {
+  return {
+    initialValues: ownProps.savingData
+  }
+}
+
 // Decorate the form component
 SavingForm = reduxForm({
-  form: 'contact' // a unique name for this form
+  form: 'savingForm'
 })(SavingForm);
 
-export default SavingForm;
+export default connect(mapStateToProps)(SavingForm);
