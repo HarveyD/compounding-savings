@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import { selectSaving } from '../actions/index';
 import { createSaving } from '../actions/index';
 import { updateSaving } from '../actions/index';
 import { deleteSaving } from '../actions/index';
 
+import { toggleSettings } from '../actions/index';
+import { updateSettings } from '../actions/index';
+
 import {Field, reduxForm} from 'redux-form';
 import SavingForm from './savings-form';
+import SettingsForm from './settings-form';
 
 class SavingsList extends Component {
     submit(values){
@@ -35,12 +39,23 @@ class SavingsList extends Component {
         });
     }
 
+    renderSettings(){
+        return (
+            <div>
+                <li onClick = {() => this.props.toggleSettings()}> Settings <i className="fa fa-gear"></i> </li>
+                <div className= {this.props.settings.active ? 'active': 'inactive'}>
+                    <SettingsForm settingsData={this.props.settings}> </SettingsForm>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <ul className="navList">
-                <li> Your Savings <i className="fa fa-money"></i> </li>
+                {this.renderSettings()}
                 <br/>
-                {this.renderList()}
+                    {this.renderList()}
                 <br/>
                 <li onClick={() => this.props.createSaving()}> Add Saving <i className="fa fa-plus"></i></li>
             </ul>
@@ -54,6 +69,7 @@ class SavingsList extends Component {
 function mapStateToProps(state) {
     return {
         savings: state.savings,
+        settings: state.settings,
         activeSaving: state.activeSaving
     };
 }
@@ -65,7 +81,9 @@ function matchDispatchToProps(dispatch){
         selectSaving: selectSaving, 
         createSaving: createSaving,
         updateSaving: updateSaving,
-        deleteSaving: deleteSaving
+        deleteSaving: deleteSaving,
+        updateSettings: updateSettings,
+        toggleSettings: toggleSettings
     }, dispatch);
 }
 

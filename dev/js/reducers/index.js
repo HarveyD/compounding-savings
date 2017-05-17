@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import SavingsList from './reducer-savings';
 import ActiveSaving from './reducer-active-saving';
+import Settings from './reducer-settings';
 import ChartData from './reducer-chart-data';
 
 import { reducer as formReducer } from 'redux-form';
@@ -12,7 +13,8 @@ import { reducer as formReducer } from 'redux-form';
 const allReducers = combineReducers({
     savings: SavingsList,
     activeSaving: ActiveSaving,
-    chartData: ChartData,
+    chartState: ChartData,
+    settings: Settings,
 
     form: formReducer
 });

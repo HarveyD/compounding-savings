@@ -32,10 +32,9 @@ class Chart extends React.Component {
     }
 }
 
-// "state.activeUser" is set in reducers/index.js
 function mapStateToProps(state) {
     return {
-        chartData: state.chartData
+        chartData: state.chartState.chart
     };
 }
 

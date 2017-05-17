@@ -24,3 +24,18 @@ export const deleteSaving = (saving) => {
         payload: saving
     }
 };
+
+// SETTINGS
+
+export const updateSettings = (settings) => {
+    return {
+        type: 'UPDATE_SETTINGS',
+        payload: settings
+    }
+}
+
+export const toggleSettings = () => {
+    return {
+        type: "TOGGLE_SETTINGS"
+    }
+}
