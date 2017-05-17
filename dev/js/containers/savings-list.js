@@ -15,10 +15,6 @@ import SavingForm from './savings-form';
 import SettingsForm from './settings-form';
 
 class SavingsList extends Component {
-    submit(values){
-        this.props.updateSaving(values);
-    }
-
     renderList() {
         return this.props.savings.map((saving) => {
             return (
@@ -44,7 +40,7 @@ class SavingsList extends Component {
             <div>
                 <li onClick = {() => this.props.toggleSettings()}> Settings <i className="fa fa-gear"></i> </li>
                 <div className= {this.props.settings.active ? 'active': 'inactive'}>
-                    <SettingsForm settingsData={this.props.settings}> </SettingsForm>
+                    <SettingsForm onSubmit={(settings) => this.props.updateSettings(settings)} settingsData={this.props.settings}> </SettingsForm>
                 </div>
             </div>
         )

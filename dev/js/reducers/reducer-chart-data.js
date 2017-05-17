@@ -72,8 +72,17 @@ export default function (state = initialChart, action) {
                 })
             });
         case "UPDATE_SETTINGS":
+            // Either need to store saving amount / frequency or find some algo that adjusts the savings correctly.
+            var newDatasets = state.chart.datasets.map(x => {
+                x.data = calculateCompound(x, action.payload); 
+                return x;
+            });
             return Object.assign({}, state, {
-                settings: action.payload
+                settings: action.payload,
+                chart: Object.assign({}, state.chart, {
+                    labels: [...Array(parseInt(action.payload.yearsShown)+1).keys()],
+                    datasets: newDatasets
+                })
             });
         default:
             return state;
@@ -85,7 +94,7 @@ var calculateCompound = function(saving, settings){
 
     var compounding = [];
     compounding[0]=0;
-    for(var i=1; i<= settings.yearsShown; i++){
+    for(var i=1; i<= settings.yearsShown+1; i++){
         var p = compounding[i-1] + (saving.amount * saving.frequency);
         compounding.push(
             p * (1+ settings.interestRate/compounded)
