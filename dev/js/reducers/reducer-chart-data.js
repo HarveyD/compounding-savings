@@ -90,14 +90,15 @@ export default function (state = initialChart, action) {
 }
 
 var calculateCompound = function(saving, settings){
-    var compounded = Math.floor(settings.compoundingFrequency / 12);
+    console.log(settings.compoundingFrequency);
+    var compounded = settings.compoundingFrequency;
 
     var compounding = [];
     compounding[0]=0;
     for(var i=1; i<= settings.yearsShown+1; i++){
         var p = compounding[i-1] + (saving.amount * saving.frequency);
         compounding.push(
-            p * (1+ settings.interestRate/compounded)
+            p * Math.pow((1+ settings.interestRate/settings.compoundingFrequency), 1*settings.compoundingFrequency)
         );
     }
     compounding.shift();

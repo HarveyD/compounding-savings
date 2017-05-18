@@ -4,7 +4,7 @@ const initialElements = [
             type: "Coffee",
             amount: 3,
             investment: "Shares",
-            frequency: "Daily"
+            frequency: 365
         }
 ];
 

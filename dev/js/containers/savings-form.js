@@ -17,7 +17,14 @@ class SavingForm extends Component {
         </div>
         <div>
           <label htmlFor="frequency">Saving Frequency</label>
-          <Field name="frequency" component="input" type="text"/>
+            <Field name="frequency" component="select">
+              <option value={365}>Daily</option>
+              <option value={52}>Weekly</option>
+              <option value={12}>Monthly</option>
+              <option value={4}>Quarterly</option>
+              <option value={2}>Semi-Anually</option>
+              <option value={1}>Anually</option>
+          </Field>
         </div>
         <button type="submit"><i className="fa fa-check"/>Update</button>
       </form>
