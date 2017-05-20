@@ -2,16 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Line as LineChart} from 'react-chartjs-2';
 
-//var LineChart = require("react-chartjs").Line;
-
 const options = {
     responsive:true,
     maintainAspectRatio: false,
-    //scaleShowGridLines: true,
-    //scaleGridLineColor: 'rgba(255,255,255,.05)',
-    //scaleGridLineWidth: 1,
-    //scaleShowHorizontalLines: true,
-    //scaleShowVerticalLines: true,
     bezierCurve: true,
     bezierCurveTension: 0.4,
 

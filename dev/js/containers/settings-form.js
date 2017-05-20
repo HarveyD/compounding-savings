@@ -2,14 +2,30 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
+const required = value => value ? undefined : 'Required';
+const isNumber = value => isNaN(Number(value)) ? 'Must be a number.' : undefined;
+const interestRate = value => parseFloat(value) <= 0 || parseFloat(value) > 1 ? 'Must be between 1 and 0.' : undefined;
+
+const maxYears = value => parseInt(value) <= 0 || parseInt(value) > 50 ? 'Maximum of 50 years shown.' : undefined;
+
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} placeholder={label} type={type}/>
+      {touched && ((error && <span className="error">{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+)
+
 class SettingsForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="interestRate">Interest Rate</label>
-          <Field name="interestRate" component="input" validate={interestRate} type="text"/>
+          <Field name="interestRate" component={renderField} validate={[ required, isNumber, interestRate ]} type="text"/>
         </div>
         <div>
           <label htmlFor="compoundingFrequency">Compounding Frequency</label>
@@ -24,13 +40,13 @@ class SettingsForm extends Component {
         </div>
         <div>
           <label htmlFor="yearsShown">Years Shown</label>
-          <Field name="yearsShown" component="input" type="text"/>
+          <Field name="yearsShown" component={renderField} validate={[ required, maxYears ]} type="text"/>
         </div>
-        <div>
+        {/*<div>
           <label htmlFor="amount">Combine Savings</label>
           <Field name="amount" component="input" type="text"/>
-        </div>
-        <button type="submit"><i className="fa fa-check"/>Update</button>
+        </div>*/}
+        <button type="submit" disabled={submitting}><i className="fa fa-check"/>Update</button>
       </form>
     );
   }

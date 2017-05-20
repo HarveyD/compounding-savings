@@ -3,7 +3,6 @@ const initialElements = [
             id: 1,
             type: "Coffee",
             amount: 3,
-            investment: "Shares",
             frequency: 365
         }
 ];
