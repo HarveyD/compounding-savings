@@ -1,15 +1,17 @@
 const skeleton = {
-    fillColor: 'rgba(220,220,220,0.2)',
-    strokeColor: 'rgba(220,220,220,1)',
-    pointColor: 'rgba(220,220,220,1)',
-    pointStrokeColor: '#fff',
-    pointHighlightFill: '#fff',
-    pointHighlightStroke: 'rgba(220,220,220,1)'
-}
+    pointBorderColor: 'rgba(255, 255, 255 0.75)',
+    pointBackgroundColor: "rgba(255,255,255,1)",    
+    pointBorderWidth: 1,
+    pointHoverRadius: 5,
+    pointHoverBackgroundColor: 'rgba(125, 125, 125, 0.75)',
+    pointHoverBorderColor: 'rgba(220,220,220,1)',
+    pointHoverBorderWidth: 2,
+    pointRadius: 5,
+    pointHitRadius: 10,
 
-// for(var i=1; i<= 25; i++){
-//     yearLabels.push('Year '+ i);
-// }
+    backgroundColor: "rgba(220,220,220,0.4)",
+    borderColor: "rgba(255, 255, 255, 0.75)",
+}
 
 const initialChart = {
     settings: {
@@ -29,6 +31,12 @@ const initialChart = {
             pointStrokeColor: '#fff',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(220,220,220,1)',
+            backgroundColor: [
+                "rgba(220,220,220,0.4)"
+            ],
+            pointBackgroundColor: [
+                "rgba(220,220,220,1)"
+            ],
             data: [0],
         }]
     }

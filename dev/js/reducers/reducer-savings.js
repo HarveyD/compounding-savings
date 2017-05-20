@@ -15,7 +15,7 @@ export default function (state = initialElements, action) {
                 id: state.length+1,
                 type: "",
                 investment: "",
-                frequency: "",
+                frequency: 365,
                 amount: 0}];
             break;
         case "UPDATE_SAVING":
