@@ -9,7 +9,7 @@ class SettingsForm extends Component {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="interestRate">Interest Rate</label>
-          <Field name="interestRate" component="input" type="text"/>
+          <Field name="interestRate" component="input" validate={interestRate} type="text"/>
         </div>
         <div>
           <label htmlFor="compoundingFrequency">Compounding Frequency</label>

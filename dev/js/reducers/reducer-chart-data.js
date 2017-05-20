@@ -10,7 +10,7 @@ const skeleton = {
     pointHitRadius: 10,
 
     backgroundColor: "rgba(220,220,220,0.4)",
-    borderColor: "rgba(255, 255, 255, 0.75)",
+    borderColor: "rgba(255, 255, 255, 0.75)"
 }
 
 const initialChart = {
@@ -25,19 +25,19 @@ const initialChart = {
         datasets: [{
             id: 1,
             label: 'New Saving',
-            fillColor: 'rgba(220,220,220,0.2)',
-            strokeColor: 'rgba(220,220,220,1)',
-            pointColor: 'rgba(220,220,220,1)',
-            pointStrokeColor: '#fff',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)',
-            backgroundColor: [
-                "rgba(220,220,220,0.4)"
-            ],
-            pointBackgroundColor: [
-                "rgba(220,220,220,1)"
-            ],
-            data: [0],
+            pointBorderColor: 'rgba(255, 255, 255 0.75)',
+            pointBackgroundColor: "rgba(255,255,255,1)",    
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(125, 125, 125, 0.75)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 5,
+            pointHitRadius: 10,
+
+            backgroundColor: "rgba(220,220,220,0.4)",
+            borderColor: "rgba(255, 255, 255, 0.75)",
+            data: [0]
         }]
     }
 };
@@ -64,6 +64,12 @@ export default function (state = initialChart, action) {
 
                 dataset.label = action.payload.type;
                 dataset.data = calculateCompound(action.payload, state.settings); 
+                //To be used to recalculate if settings are changed.
+                dataset.saving = {
+                    amount: action.payload.amount,
+                    frequency: action.payload.frequency
+                };
+
                 return dataset;
             });
 
@@ -82,7 +88,8 @@ export default function (state = initialChart, action) {
         case "UPDATE_SETTINGS":
             // Either need to store saving amount / frequency or find some algo that adjusts the savings correctly.
             var newDatasets = state.chart.datasets.map(x => {
-                x.data = calculateCompound(x, action.payload); 
+                x.data = calculateCompound(x.saving, action.payload); 
+                console.log(x.data);
                 return x;
             });
             return Object.assign({}, state, {
@@ -98,12 +105,10 @@ export default function (state = initialChart, action) {
 }
 
 var calculateCompound = function(saving, settings){
-    console.log(settings.compoundingFrequency);
-    var compounded = settings.compoundingFrequency;
-
+    console.log(settings);
     var compounding = [];
     compounding[0]=0;
-    for(var i=1; i<= settings.yearsShown+1; i++){
+    for(var i=1; i<= parseInt(settings.yearsShown)+1; i++){
         var p = compounding[i-1] + (saving.amount * saving.frequency);
         compounding.push(
             p * Math.pow((1+ settings.interestRate/settings.compoundingFrequency), 1*settings.compoundingFrequency)
