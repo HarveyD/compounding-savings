@@ -13,7 +13,6 @@ export default function (state = initialElements, action) {
         return [...state, {
                 id: state.length+1,
                 type: "",
-                investment: "",
                 frequency: 365,
                 amount: 0}];
             break;
