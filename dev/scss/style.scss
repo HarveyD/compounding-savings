@@ -38,19 +38,24 @@ body, #root {
 #inner-flex-container {
    display: flex;
    flex-direction: column;
-   width: calc(100% - 275px);
+   width: calc(100% - 300px);
    order: 1;
 }
 
-.nav   { flex: 1 275px; order: 0; overflow: auto; height:100vh;} // this is making it not mobile responsive
+.nav   { flex: 1 300px; order: 0;} // this is making it not mobile responsive
 header  { flex: 1; order: 0;}
 section { flex: 4; order: 1; padding: 10px; }
 
+@media screen and (min-width: 500px){
+	.nav{ overflow: auto; height:100vh; }
+}
+
 @media screen and ( max-width: 500px) {
      body { flex-direction: column; }
-     .nav { flex: 1; order: 2; }
-     section{ flex: 15;}
+     .nav { flex: 1!important; order: 2!important;}
+     section{ flex: 15; height: 75vh;}
      #inner-flex-container { width: 100%; flex: 6; }
+	 h1{font-size: 32px;}
 }
 
 /* Saving Form */

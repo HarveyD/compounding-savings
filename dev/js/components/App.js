@@ -11,7 +11,7 @@ const App = () => (
 
         <div id="inner-flex-container">
             <header>
-                <h1> Compounding Savings Motivator </h1>
+                <h1> Compounding Savings </h1>
             </header>
             <section>
                 <Chart />
