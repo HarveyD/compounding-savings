@@ -89,7 +89,6 @@ export default function (state = initialChart, action) {
             // Either need to store saving amount / frequency or find some algo that adjusts the savings correctly.
             var newDatasets = state.chart.datasets.map(x => {
                 x.data = calculateCompound(x.saving, action.payload); 
-                console.log(x.data);
                 return x;
             });
             return Object.assign({}, state, {
@@ -105,7 +104,6 @@ export default function (state = initialChart, action) {
 }
 
 var calculateCompound = function(saving, settings){
-    console.log(settings);
     var compounding = [];
     compounding[0]=0;
     for(var i=1; i<= parseInt(settings.yearsShown)+1; i++){
