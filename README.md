@@ -1,5 +1,7 @@
 # Compounding Savings
 
+![CompoundingSavings](https://i.imgur.com/JmlNyD5.png)
+
 A simple web app that I made to learn React. 
 
 While there are hundreds of other compounding interest calculators online, they all have a very bad UI.
